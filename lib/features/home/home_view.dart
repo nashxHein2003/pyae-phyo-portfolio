@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
               ),
             )),
             ResponsiveRowColumnItem(
-                child: _buildProjectTile('assets/project/northern.png')),
+                child: _buildProjectTile('assets/project/gxmarket.png')),
             ResponsiveRowColumnItem(
                 child: _buildProjectTile('assets/project/northern.png')),
             ResponsiveRowColumnItem(
