@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pyae_phyo/core/theme/app_color.dart';
+import 'package:pyae_phyo/features/home/components/tab_item.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class HomeView extends StatelessWidget {
@@ -25,9 +26,9 @@ class HomeView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildTabItem('Home', null, AppColor.paleGold, null),
-                      _buildTabItem('About', null, null, null),
-                      _buildTabItem('Contact', null, null, null),
+                      TabItem(title: 'Work', bgColor: AppColor.paleGold),
+                      const TabItem(title: 'About'),
+                      const TabItem(title: 'Resume')
                     ],
                   ),
                 ),
@@ -40,14 +41,33 @@ class HomeView extends StatelessWidget {
                   Text(
                     'Pyae Phyo',
                     style: TextStyle(
-                        fontSize: 135,
+                        fontSize: ResponsiveValue(
+                          context,
+                          defaultValue: 135.0,
+                          conditionalValues: [
+                            const Condition.smallerThan(
+                                name: TABLET, value: 60.0),
+                            const Condition.largerThan(
+                                name: DESKTOP, value: 150.0),
+                          ],
+                        ).value,
                         color: AppColor.white,
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
                     'Hi! I’m a Product Designer based in Bangkok Thailand.',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 48,
+                        fontSize: ResponsiveValue(
+                          context,
+                          defaultValue: 48.0,
+                          conditionalValues: [
+                            const Condition.smallerThan(
+                                name: TABLET, value: 20.0),
+                            const Condition.largerThan(
+                                name: DESKTOP, value: 50.0),
+                          ],
+                        ).value,
                         color: AppColor.white,
                         fontWeight: FontWeight.w400),
                   )
@@ -55,11 +75,19 @@ class HomeView extends StatelessWidget {
               ),
             )),
             ResponsiveRowColumnItem(
-                child: _buildProjectTile('assets/project/northern.png')),
+                child: _buildProjectTile('assets/project/gxmarket.png')),
             ResponsiveRowColumnItem(
                 child: _buildProjectTile('assets/project/northern.png')),
             ResponsiveRowColumnItem(
-                child: _buildProjectTile('assets/project/radian.png'))
+                child: _buildProjectTile('assets/project/radian.png')),
+            ResponsiveRowColumnItem(
+                child: _buildProjectTile('assets/project/grumman.png')),
+            ResponsiveRowColumnItem(
+                child: _buildProjectTile('assets/project/foody.png')),
+            ResponsiveRowColumnItem(
+                child: _buildProjectTile('assets/project/dashcube.png')),
+            ResponsiveRowColumnItem(
+                child: _buildProjectTile('assets/project/node.png')),
           ],
         ),
       ),
@@ -76,27 +104,6 @@ class HomeView extends StatelessWidget {
             imageUrl,
             fit: BoxFit.cover,
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTabItem(
-      String title, Color? color, Color? bgColor, VoidCallback? onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: bgColor ?? Colors.transparent,
-        ),
-        child: Text(
-          title,
-          style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-              color: color ?? AppColor.white),
         ),
       ),
     );
