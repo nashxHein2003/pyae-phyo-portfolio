@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pyae_phyo/core/theme/app_color.dart';
+import 'package:pyae_phyo/core/utils/shared/app_state_provider.dart';
 import 'package:pyae_phyo/features/home/home_view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => AppState())],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
